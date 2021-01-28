@@ -3,9 +3,17 @@ import axios from 'axios';
 
 const Context = React.createContext()
 
-
 function ContextProvider({children}){
 const [allPhotos, setAllPhotos] = useState([])
+const [cartItems, setCartItems] = useState([])
+
+const addToCart = (imgObj) => {
+    setCartItems(cartItems => [...cartItems, imgObj])
+} 
+
+const removeFromCart = (id) => {
+        setCartItems(prevItems => prevItems.filter(item => item.id !== id))
+    }
 
 const toggleFavorite = (id) => {
     const updatedArr = allPhotos.map(photo => {
@@ -19,8 +27,6 @@ const toggleFavorite = (id) => {
         })
     setAllPhotos(updatedArr)
 }
-
- 
 
 
 useEffect(() => {
@@ -38,7 +44,7 @@ const getAllPhotos = async () => {
 }
 
     return (
-        <Context.Provider value={{allPhotos, toggleFavorite}} toggleFavorite={toggleFavorite}>
+        <Context.Provider value={{allPhotos, cartItems, toggleFavorite, addToCart, removeFromCart}} toggleFavorite={toggleFavorite}>
             {children}
         </Context.Provider>
     )

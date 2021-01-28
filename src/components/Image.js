@@ -14,8 +14,24 @@ Image.propTypes = {
 
 function Image({className, img}){
     const [isHoovered, setIsHoovered] = useState(false)
-    const {toggleFavorite} = useContext(Context)
-
+    const {cartItems, toggleFavorite, addToCart, removeFromCart} = useContext(Context)
+    
+    const heartIcon = () => {
+        if(img.isFavorite) {
+            return <i className="ri-heart-fill favorite" onClick={() => toggleFavorite(img.id)}></i>
+        } else if(isHoovered) {
+            return <i className="ri-heart-line favorite" onClick={() => toggleFavorite(img.id)}></i>
+        }
+    }
+    
+    const cartIcon = () => {
+        const alreadyInCart = cartItems.some(item => item.id === img.id)
+        if(alreadyInCart) {
+            return <i className="ri-shopping-cart-fill cart" onClick={() => removeFromCart(img.id)}></i>
+        } else if(isHoovered) {
+            return <i className="ri-add-circle-line cart" onClick={() => addToCart(img)}></i>
+        }
+    }
     return(
         <div 
             className={`${className} image-container`}
@@ -24,20 +40,8 @@ function Image({className, img}){
         <img    
             src={img.url} className='image-grid'
             alt="Images from catalog"/>
-                {isHoovered ? (
-                    <>
-                    {img.isFavorite ? 
-                        (<i className="ri-heart-fill favorite"
-                            onClick={() => toggleFavorite(img.id)}>   
-                        </i>) : 
-                        (<i  className="ri-heart-line favorite"
-                             onClick={() => toggleFavorite(img.id)}>
-                        </i>)}
-                        
-                        <i className="ri-add-circle-line cart"></i>
-                    </>
-                ) : null }
-
+             {heartIcon()}
+             {cartIcon()}
          </div>
     )
 }
