@@ -15,6 +15,10 @@ const removeFromCart = (id) => {
         setCartItems(prevItems => prevItems.filter(item => item.id !== id))
     }
 
+const emptyCart = () => {
+        setCartItems([])
+    }
+
 const toggleFavorite = (id) => {
     const updatedArr = allPhotos.map(photo => {
             if(photo.id === id) {
@@ -44,7 +48,7 @@ const getAllPhotos = async () => {
 }
 
     return (
-        <Context.Provider value={{allPhotos, cartItems, toggleFavorite, addToCart, removeFromCart}} toggleFavorite={toggleFavorite}>
+        <Context.Provider value={{allPhotos, cartItems, toggleFavorite, addToCart, removeFromCart, emptyCart}} toggleFavorite={toggleFavorite}>
             {children}
         </Context.Provider>
     )
