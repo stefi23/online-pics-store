@@ -7,6 +7,22 @@ const Context = React.createContext()
 function ContextProvider({children}){
 const [allPhotos, setAllPhotos] = useState([])
 
+const toggleFavorite = (id) => {
+    const updatedArr = allPhotos.map(photo => {
+            if(photo.id === id) {
+                return {
+                    ...photo,
+                    isFavorite: !photo.isFavorite
+                }
+            }
+            return photo
+        })
+    setAllPhotos(updatedArr)
+}
+
+ 
+
+
 useEffect(() => {
     getAllPhotos()
 }, [])
@@ -22,7 +38,7 @@ const getAllPhotos = async () => {
 }
 
     return (
-        <Context.Provider value={{allPhotos}}>
+        <Context.Provider value={{allPhotos, toggleFavorite}} toggleFavorite={toggleFavorite}>
             {children}
         </Context.Provider>
     )
@@ -31,14 +47,3 @@ const getAllPhotos = async () => {
 
 
 export { ContextProvider, Context} 
-
-
-//  try {
-//       const resp = await axios.get(`/everything`);
-//       // setintialSkierList(resp.data)
-//       setintialSkierList(resp.data.filter((skier, index) => skier.id !== userId))
-
-//     } catch (err) {
-//       // Handle Error Here
-//       console.error(err);
-//     }
