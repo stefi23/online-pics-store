@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react"
+import React, {useContext} from "react"
 import {Context} from '../Context'
 import PropTypes from 'prop-types'
 
@@ -13,7 +13,6 @@ CartItem.propTypes = {
 
 function CartItem({item}){
     const {removeFromCart} = useContext(Context)
-    // const [isHovered, setIsHovered] = useState(false)
     const [isHovered, ref] = useHover()
 
    const iconClassName = isHovered ? 'ri-delete-bin-fill' : 'ri-delete-bin-line'
@@ -22,11 +21,9 @@ function CartItem({item}){
         <div className='cart-item'>
             <i  className={iconClassName} 
                 onClick={()=> removeFromCart(item.id)}
-                ref={ref}
-                // onMouseEnter={() => setIsHovered(true)}
-                // onMouseLeave={() => setIsHovered(false)}
-                ></i>
-            <img src={item.url} width='130px' />
+                ref={ref}>
+            </i>
+            <img src={item.url} width='130px' alt="Srimba JSON test images" />
             <p>$5.99</p>
         </div>
     
