@@ -9,8 +9,8 @@ const cartClassName = cartItems.length > 0 ? "ri-shopping-cart-fill" : "ri-shopp
     return(
      <div>
             <header>
-                <Link to="/">Pic Some</Link>
-                <Link to="/cart"><i className={`${cartClassName} ri-fw ri-2x`}></i></Link>
+                <Link to="/online-pics-store">Pic Some</Link>
+                <Link to="/online-pics-store/cart"><i className={`${cartClassName} ri-fw ri-2x`}></i></Link>
             </header>
 
         </div>

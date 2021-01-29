@@ -2,7 +2,7 @@
 
 > A online pictures store website with limited functionality created for practice purposes.
 >
-> 👉 [Live demo to be added]()
+> 👉 [Live demo](https://stefi.codes/online-pics-store/)
 
 ![Online Pictures Store Screenshot](./src/images/online-store-demo.png)
 
@@ -29,3 +29,5 @@ $ cd online-pics-store
 $ npm install
 $ npm start
 ```
+
+Make sure to add /online-pics-store after localhost:3000
